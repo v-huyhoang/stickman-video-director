@@ -140,6 +140,9 @@ Change the ratio, duration, style, theme, narration, scene structure, palette, v
 - Independent Gemini Omni Flash prompts matching your scene count (default 6) with timed beats and anti-glitch constraints
 - Matched endings and openings for cleaner transitions between clips
 - BGM, sound-effect, continuity, and final stitching guidance
+- An optional post-production `.srt` subtitle package based on approved narration and storyboard timing, including external-voiceover workflows
+- A local Flask browser UI and CLI workspace for visual setup, approval gates, prompt handoffs, and subtitle exports
+- An optional research review for factual topics that checks sources, preserves uncertainty, and keeps theories out of definitive narration
 
 <details>
 <summary><strong>Example request</strong></summary>

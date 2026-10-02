@@ -73,6 +73,14 @@ Instruct the model not to add, omit, paraphrase, repeat, reorder, caption, subti
 
 Default every generated clip to no visible words, letters, numbers, captions, subtitles, interface copy, palette labels, production annotations, logos, or watermarks. Require icon-only message bubbles, content cards, clocks, meters, and notifications. Put optional approved phrases in a separate post-production overlay list outside the prompts.
 
+### External narration override
+
+When the user explicitly requests an external voiceover, supersede the generated-dialogue and narrator-lock requirements for that package:
+
+- Every prompt must require music and ambient SFX only, with no generated narration, speech, dialogue, vocals, speech bubbles, or dialogue boxes.
+- Preserve each approved English VO passage as an editor-only timing cue outside the model prompt; do not send that cue to the video model.
+- If subtitles are requested, read `references/subtitle-contract.md` after Phase B and derive them from the approved narration, not from generated clip audio.
+
 ## Palette notation
 
 Use ordinary descriptive color names such as vivid red, electric blue, or warm gold. Never put hexadecimal, RGB, HSL, Pantone, or other technical color notation in a generation prompt. Models may reproduce prominent notation literally as unwanted interface text.
@@ -114,6 +122,10 @@ Independent text-only generations may vary in voice and music. Recommend, in ord
 2. Repeat the identical narrator description in every prompt.
 3. For maximum consistency, generate synchronized SFX and add one continuous external English voiceover and BGM track during assembly.
 
+## Optional subtitle package
+
+When the user requests subtitles, captions, an `.srt`, a `.vtt`, or an external voiceover, read `references/subtitle-contract.md` after delivering the production prompts. Subtitles are post-production assets and must not appear inside Gemini Omni Flash prompts.
+
 ## Phase B checks
 
 - The user approved the current Phase A.
@@ -123,6 +135,8 @@ Independent text-only generations may vary in voice and music. Recommend, in ord
 - Every ending matches the next opening.
 - Dialogue exactly matches the approved narration.
 - Dialogue is explicitly audio-only and is never displayed visually.
+- For an explicit external-voiceover request, every model prompt contains music and ambient SFX only; approved VO appears only as an editor cue outside prompts.
+- When subtitles are requested, the optional subtitle package preserves approved narration and stays within approved clip timing.
 - Standalone prompts contain no hexadecimal, RGB, HSL, Pantone, or other technical color notation.
 - Style 2 prompts feature the verified character anchor, BGM continuity lock, and anti-clutter negative constraints.
 - Generated scenes contain no visible writing; optional overlay phrases are listed separately for post-production.

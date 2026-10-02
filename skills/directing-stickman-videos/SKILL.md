@@ -1,13 +1,13 @@
 ---
 name: directing-stickman-videos
-description: Use when turning copy, notes, articles, or topics into customizable-length English stick-figure videos (in 10-second multiples: 30s, 60s, 3min, 5min, default 60s), kinetic line-animation explainers, motivational shorts, or Gemini Omni Flash prompt packages.
+description: Use when researching factual source claims and turning copy, notes, articles, or topics into customizable-length English stick-figure videos (in 10-second multiples: 30s, 60s, 3min, 5min, default 60s), Gemini Omni Flash prompt packages, or optional timed subtitle files.
 ---
 
 # Directing Stickman Videos
 
 ## Core contract
 
-Turn one source into a confirmed director's proposal and then N standalone prompts for approximately ten-second Gemini Omni Flash clips (where N = target duration in seconds / 10; default 6 clips for 60 seconds). Preserve the source's meaning while structuring it through a high-completion 5-stage emotional narrative arc.
+For factual topics, first research and review the source claims. Then turn the reviewed source into a confirmed director's proposal and N standalone prompts for approximately ten-second Gemini Omni Flash clips (where N = target duration in seconds / 10; default 6 clips for 60 seconds). When requested after approval, also create a post-production subtitle package timed to the approved clip plan. Preserve the source's meaning while structuring it through a high-completion 5-stage emotional narrative arc.
 
 ## Setup gate
 
@@ -28,11 +28,14 @@ Urgency, generation cost, client pressure, and requests to "pick normal settings
 
 ## Workflow
 
-1. Read `references/storyboard-template.md` and `references/style-catalog.md`. Structure the narrative using the **5-Stage High-Completion Heartbeat Engine** (Golden Hook → Disrupting Assumptions → Unveiling Insider Secrets → Ultimate Truth Revelation → Elevation & Interactive Discussion), with timing dynamically scaled to the target duration. Produce Phase A in the user's language, with English VO and a reference translation.
-2. Stop after the director's proposal and request explicit approval.
-3. If the user changes ratio, duration, style, theme, narration, scene structure, or global direction, recompose Phase A and request approval again.
-4. Only after approval of the current Phase A, read `references/omni-flash-prompt-contract.md` and produce Phase B.
-5. Use `references/examples.md` only when a concrete end-to-end example would resolve ambiguity.
+1. Decide whether the request is factual. For history, science, medicine, law, finance, public figures, current events, named products, dates, statistics, quotations, or causal claims, read `references/research-review-contract.md` and perform its Research Review before planning. Purely fictional or user-supplied creative stories do not need research unless the user asks for it.
+2. If the review finds a material conflict, missing support for the core claim, or a source that cannot be safely represented, stop after the Research Review and ask the user how to proceed. Do not silently repair the source or invent a bridge.
+3. Otherwise, read `references/storyboard-template.md` and `references/style-catalog.md`. Include a concise Research Review summary, then structure the narrative using the **5-Stage High-Completion Heartbeat Engine** (Golden Hook → Disrupting Assumptions → Unveiling Insider Secrets → Ultimate Truth Revelation → Elevation & Interactive Discussion), with timing dynamically scaled to the target duration. Produce Phase A in the user's language, with English VO and a reference translation.
+4. Stop after the director's proposal and request explicit approval.
+5. If the user changes ratio, duration, style, theme, narration, scene structure, source claims, or global direction, recompose Phase A and request approval again. Re-run Research Review when a factual claim changes or becomes more specific.
+6. Only after approval of the current Phase A, read `references/omni-flash-prompt-contract.md` and produce Phase B.
+7. When the user requests subtitles, captions, an `.srt`, a `.vtt`, or external narration, read `references/subtitle-contract.md` after Phase B. Create the subtitle package only from the approved narration and timeline.
+8. Use `references/examples.md` only when a concrete end-to-end example would resolve ambiguity.
 
 Topic approval, schedule pressure, or approval of an older draft is not approval of the current Phase A.
 
@@ -61,6 +64,9 @@ Topic approval, schedule pressure, or approval of an older draft is not approval
 - Default generated clips to no visible words, letters, numbers, or interface copy. Put optional two-to-five-word overlays in a separate post-production note.
 - Match every clip ending to the next clip opening.
 - Do not invent unsupported facts, statistics, quotations, or product claims.
+- For factual topics, use only claims that survived Research Review. Preserve uncertainty in the narration rather than converting a qualified source into a definitive statement. Name the review's source types and distinguish verified facts, qualified claims, and unresolved theories in the Phase A summary.
+- Treat subtitles as post-production assets. Never ask the video model to render captions or visible text. When requested after Phase B, provide a draft `.srt` by default and a `.vtt` only when requested; clearly state that its timing must be checked against the final recorded voiceover.
+- If the user requests an external voiceover, replace generated narration in every Phase B prompt with music and ambient SFX only. Keep the approved narration as an editor-only timing cue and generate captions from that same approved text.
 
 ## Revision rules
 

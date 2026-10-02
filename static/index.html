@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f172a">
+    <title>Stickman Video Director</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#setup" aria-label="Stickman Video Director home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Stickman Video Director</span>
+      </a>
+      <p class="privacy-note">Local workspace · No source leaves this machine</p>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Production workspace</p>
+          <h1 id="page-title">Direct the story.<br><em>Keep the gates.</em></h1>
+          <p class="hero-copy">A local control room around the existing Codex Skill: setup, approval, production handoff, and subtitle delivery without weakening the core contract.</p>
+        </div>
+        <aside class="flow-card" aria-label="Workflow stages">
+          <span class="flow-stage active" data-stage="setup">01 · Setup</span>
+          <span class="flow-arrow" aria-hidden="true">↓</span>
+          <span class="flow-stage" data-stage="phase-a">02 · Research + Phase A</span>
+          <span class="flow-arrow" aria-hidden="true">↓</span>
+          <span class="flow-stage" data-stage="approval">03 · Approval</span>
+          <span class="flow-arrow" aria-hidden="true">↓</span>
+          <span class="flow-stage" data-stage="delivery">04 · Phase B + Subtitles</span>
+        </aside>
+      </section>
+
+      <section class="workspace-grid">
+        <form class="panel setup-panel" id="setup" novalidate>
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">01 · Setup</p>
+              <h2>Start a video project</h2>
+            </div>
+            <span class="status-pill">Required fields</span>
+          </div>
+
+          <div class="form-grid">
+            <label>Project name
+              <input name="projectId" required pattern="[a-z0-9][a-z0-9-]{0,62}" placeholder="strasbourg-dance">
+              <small>Lowercase letters, numbers, hyphens.</small>
+            </label>
+            <label>Aspect ratio
+              <select name="aspect" required>
+                <option value="9:16">9:16 · Vertical</option>
+                <option value="16:9">16:9 · Landscape</option>
+              </select>
+            </label>
+            <label>Duration
+              <select name="duration" required>
+                <option value="30">30 seconds · 3 clips</option>
+                <option value="60" selected>60 seconds · 6 clips</option>
+                <option value="90">90 seconds · 9 clips</option>
+                <option value="180">3 minutes · 18 clips</option>
+              </select>
+            </label>
+            <label>Visual style
+              <select name="style" id="style" required>
+                <option value="classic">Style 1 · Classic Minimalist</option>
+                <option value="modern-studio-tech">Style 2A · Modern Studio Tech</option>
+                <option value="cinematic-story">Style 2B · Cinematic Story</option>
+              </select>
+            </label>
+            <label id="theme-field">Classic theme
+              <select name="theme" id="theme">
+                <option value="light">Light · White canvas, black figures</option>
+                <option value="dark">Dark · Black canvas, white figures</option>
+              </select>
+            </label>
+            <label>Subtitle format
+              <select name="subtitleFormat">
+                <option value="srt">SRT · Default</option>
+                <option value="vtt">WebVTT</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="source-field">Source copy or verified notes
+            <textarea name="source" rows="8" required placeholder="Paste the source material. The core Skill preserves claims and hedging; this UI stores it locally."></textarea>
+          </label>
+          <label class="toggle-row">
+            <input type="checkbox" name="externalVoiceover">
+            <span><strong>External voiceover</strong><small>Generate clips with music and ambient SFX only. Add ElevenLabs or human narration during editing.</small></span>
+          </label>
+          <div class="form-actions">
+            <p id="form-feedback" class="feedback" role="status"></p>
+            <button class="button primary" type="submit">Create project <span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+
+        <aside class="panel project-panel" aria-live="polite">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Control room</p>
+              <h2 id="project-title">No project selected</h2>
+            </div>
+            <span class="status-pill muted" id="project-phase">Draft</span>
+          </div>
+          <label class="project-picker-label">Open an existing workspace
+            <select id="project-picker">
+              <option value="">Select a project</option>
+            </select>
+          </label>
+          <div id="empty-state" class="empty-state">
+            <p>Create a project to expose its Phase A handoff, approval controls, production prompt handoff, and subtitle exporter.</p>
+          </div>
+          <div id="project-content" hidden>
+            <dl class="project-meta" id="project-meta"></dl>
+            <div class="timeline" id="timeline" aria-label="Clip timeline"></div>
+            <div class="action-stack">
+              <button class="button secondary" id="open-phase-a" type="button">Open Research + Phase A handoff</button>
+              <button class="button secondary" id="capture-phase-a" type="button">Capture current Phase A</button>
+              <button class="button primary" id="approve-phase-a" type="button">Approve current Phase A</button>
+              <button class="button secondary" id="open-phase-b" type="button">Open Phase B handoff</button>
+              <button class="button secondary" id="create-subtitle" type="button">Create subtitle draft</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="panel artifact-panel" id="artifact-panel" hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" id="artifact-kicker">Artifact</p>
+            <h2 id="artifact-title">Handoff</h2>
+          </div>
+          <button class="text-button" id="copy-artifact" type="button">Copy</button>
+        </div>
+        <p id="artifact-description" class="artifact-description"></p>
+        <textarea id="artifact-content" rows="16" spellcheck="false"></textarea>
+        <div class="artifact-actions" id="artifact-actions"></div>
+      </section>
+    </main>
+
+    <template id="timeline-item-template">
+      <div class="timeline-item"><span class="timeline-time"></span><span class="timeline-dot"></span><span class="timeline-label"></span></div>
+    </template>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

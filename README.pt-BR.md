@@ -140,6 +140,9 @@ Você pode mudar proporção, duração, estilo, tema, narração, estrutura das
 - Prompts independentes do Gemini Omni Flash compatíveis com o número de cenas (padrão de 6) com marcações de tempo e travas de segurança
 - Finais e inícios correspondentes para transições mais limpas entre os clipes
 - Orientação de BGM, efeitos sonoros (SFX), consistência e montagem final
+- Um pacote opcional de legendas `.srt` de pós-produção, baseado na narração e no timing aprovados, inclusive para voz externa
+- Uma interface local em Flask e workspace de CLI para configurar visualmente o projeto, controlar aprovações, entregar prompts e exportar legendas
+- Uma revisão opcional de pesquisa para temas factuais, que verifica fontes, preserva incertezas e evita transformar teorias em narração definitiva
 
 <details>
 <summary><strong>Exemplo de pedido</strong></summary>

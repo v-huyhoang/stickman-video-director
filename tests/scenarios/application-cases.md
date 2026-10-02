@@ -31,3 +31,26 @@ Source: “你是不是也经常这样？明明什么都还没做，但感觉自
 Settings: 16:9, dark theme
 
 Check: one central claim, 130–150 English words, no repeated scenes.
+
+## External narration and subtitles
+
+Source: “A small action can interrupt a loop of hesitation.”
+
+Settings: 9:16, light theme, 30s, external English voiceover, SRT subtitles.
+
+Check: approve Phase A before Phase B; production prompts contain no generated
+voice or dialogue; after Phase B, output a three-clip, ordered, non-overlapping
+draft `.srt` derived only from the approved VO.
+
+## Historical disappearance with disputed theories
+
+Source: “A nineteenth-century inventor disappeared after boarding a train.
+Family members later suspected a rival, but no evidence established the rival's
+involvement. Suicide, voluntary disappearance, accident, and foul play have all
+been proposed.”
+
+Settings: 9:16, Style 2A Modern Studio Tech, 60s, external voiceover.
+
+Check: RESEARCH-1 through RESEARCH-4; distinguish family suspicion and each
+theory from confirmed evidence; stop before Phase B until the reviewed Phase A
+is explicitly approved.
